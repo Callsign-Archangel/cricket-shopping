@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Willow & Seam – Your Ultimate Cricket Destination</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="promo">Free delivery on orders above ₹2,999</div>
+<header><div class="wrap nav">
+  <a class="logo" href="index.html"><img src="images/logo.png" alt="Willow & Seam – Your Ultimate Cricket Destination"></a>
+  <nav><a href="#shop" onclick="show('home')">Shop</a><a href="#shop" onclick="filter('Bats')">Bats</a><a href="#shop" onclick="filter('Kits')">Kits</a><a href="contact.html">Contact us</a></nav>
+  <button class="cartbtn" onclick="toggleCart(true)" aria-label="Open cart">Cart<b id="count">0</b></button>
+</div></header>
+
+<main>
+<section id="home">
+  <div class="hero"><div class="wrap">
+    <div><h1>Gear up.<br><em>Own the crease.</em></h1>
+    <p>Bats, balls, kits, shoes and apparel for every level, from the gully to the nets.</p>
+    <a class="btn sun" href="#shop">Shop the range</a></div>
+    <div class="heroart" id="heroart"></div>
+  </div></div>
+
+  <div class="sec" id="shop"><div class="wrap">
+    <h2>Shop by category</h2>
+    <div class="cats" id="cats"></div>
+    <h2 style="margin-top:44px" id="gtitle">All products</h2>
+    <div class="grid" id="grid"></div>
+  </div></div>
+
+  <div class="sec" style="background:var(--soft)"><div class="wrap perks">
+    <div class="perk" style="background:var(--red)"><h3>Match-ready quality</h3><p>English willow and tested protective gear.</p></div>
+    <div class="perk" style="background:var(--teal)"><h3>Easy returns</h3><p>Return unused items within 7 days.</p></div>
+    <div class="perk" style="background:var(--purple)"><h3>Fast delivery</h3><p>Dispatched in 24 hours across India.</p></div>
+    <div class="perk" style="background:var(--sky)"><h3>Secure payment</h3><p>UPI, cards and cash on delivery.</p></div>
+  </div></div>
+</section>
+
+<section class="page" id="checkout"><div class="wrap">
+  <h2>Checkout</h2>
+  <div class="co">
+    <form id="form" onsubmit="placeOrder(event)">
+      <label for="name">Full name</label><input id="name" required>
+      <label for="email">Email</label><input id="email" type="email" required>
+      <div class="two">
+        <div><label for="phone">Phone</label><input id="phone" required pattern="[0-9]{10}" title="Enter a 10-digit phone number"></div>
+        <div><label for="pin">PIN code</label><input id="pin" required pattern="[0-9]{6}" title="Enter a 6-digit PIN code"></div>
+      </div>
+      <label for="addr">Delivery address</label><input id="addr" required>
+      <label for="pay">Payment method</label>
+      <select id="pay"><option>UPI</option><option>Credit / Debit card</option><option>Cash on delivery</option></select>
+      <p style="margin-top:8px;font-size:14px">Want to pay by QR? See <a href="contact.html" style="color:var(--red);font-weight:600">payment methods</a>.</p>
+      <button class="btn" style="margin-top:18px;width:100%">Place order</button>
+    </form>
+    <div class="sum" id="cosum"></div>
+  </div>
+</div></section>
+
+<section class="page" id="success"><div class="wrap ok">
+  <div class="tick">✓</div>
+  <h2>Order placed successfully</h2>
+  <p id="okmsg"></p>
+  <div class="sum" id="oksum"></div>
+  <a class="btn dark" href="index.html">Continue shopping</a>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 Willow & Seam. A student project for Web Technology.</span>
+  <a href="contact.html">Contact us</a>
+</div></footer>
+
+<div class="shade" onclick="toggleCart(false)"></div>
+<aside class="drawer" aria-label="Shopping cart">
+  <div class="dh"><h3>Your cart</h3><button class="x" onclick="toggleCart(false)" aria-label="Close cart">×</button></div>
+  <div class="items" id="items"></div>
+  <div class="df"><div class="tot"><span>Total</span><span id="total">₹0</span></div>
+  <button class="btn" style="width:100%" onclick="goCheckout()">Proceed to checkout</button></div>
+</aside>
+
+<script src="app.js"></script>
+<script>
+document.getElementById("heroart").innerHTML=
+ [["bat","#d7263d","#ffb703"],["ball","#d7263d","#dbe6ff"],["helmet","#3a86ff","#ff5d8f"],["shoe","#8338ec","#b7e000"]]
+ .map(([t,c,bg])=>`<div style="background:${bg}">${svg(t,c)}</div>`).join("");
+renderCats();renderGrid();renderCart();show("home");
+</script>
+</body>
+</html>

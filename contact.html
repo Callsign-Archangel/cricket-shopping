@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact us – Willow & Seam</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="promo">Free delivery on orders above ₹2,999</div>
+<header><div class="wrap nav">
+  <a class="logo" href="index.html"><img src="images/logo.png" alt="Willow & Seam – Your Ultimate Cricket Destination"></a>
+  <nav><a href="index.html#shop">Shop</a><a href="contact.html">Contact us</a></nav>
+  <a class="cartbtn" href="index.html">Back to shop<b id="count">0</b></a>
+</div></header>
+
+<div class="chero"><div class="wrap"><h1>Contact us</h1><p>Questions about an order or a kit? We reply within a day.</p></div></div>
+
+<div class="sec"><div class="wrap cgrid">
+  <div>
+    <h2>Get in touch</h2>
+    <div class="info-box" style="background:var(--red)"><h3>Phone</h3><p>+91 98765 43210</p></div>
+    <div class="info-box" style="background:var(--teal)"><h3>Email</h3><p>support@willowandseam.in</p></div>
+    <div class="info-box" style="background:var(--purple)"><h3>Address</h3><p>12 Cricket Lane, Koramangala, Bengaluru 560034</p></div>
+    <form onsubmit="event.preventDefault();alert('Thanks! We have received your message.');this.reset()">
+      <label for="n">Your name</label><input id="n" required>
+      <label for="m">Message</label><textarea id="m" rows="4" required></textarea>
+      <button class="btn" style="margin-top:16px">Send message</button>
+    </form>
+  </div>
+
+  <div>
+    <h2>Payment methods</h2>
+    <p style="margin-bottom:14px">Click a method to see how to pay.</p>
+    <div class="pays">
+      <button class="pay" onclick="pick('upi',this)"><span>📱</span>UPI / QR code</button>
+      <button class="pay" onclick="pick('card',this)"><span>💳</span>Credit / Debit card</button>
+      <button class="pay" onclick="pick('cod',this)"><span>💵</span>Cash on delivery</button>
+    </div>
+    <div class="paybox" id="paybox">Select a payment method above.</div>
+  </div>
+</div></div>
+
+<footer><div class="wrap"><span>© 2026 Willow & Seam. A student project for Web Technology.</span><a href="index.html">Back to home</a></div></footer>
+
+<script>
+const INFO={
+ upi:`<h3 style="margin-bottom:10px">Scan to pay with any UPI app</h3><img src="images/payment-qr.png" alt="UPI payment QR code"><p style="margin-top:10px">UPI ID: <b>willowseam@upi</b></p>`,
+ card:`<h3 style="margin-bottom:8px">Pay by card</h3><p>Choose "Credit / Debit card" at checkout. All major Visa, Mastercard and RuPay cards are accepted.</p>`,
+ cod:`<h3 style="margin-bottom:8px">Cash on delivery</h3><p>Pay in cash when your order arrives. Available on all orders across India.</p>`
+};
+function pick(k,btn){
+  document.querySelectorAll(".pay").forEach(b=>b.classList.remove("on"));
+  btn.classList.add("on");
+  document.getElementById("paybox").innerHTML=INFO[k];
+}
+try{document.getElementById("count").textContent=JSON.parse(localStorage.getItem("cart")||"[]").reduce((s,i)=>s+i.qty,0)}catch(e){}
+</script>
+</body>
+</html>
